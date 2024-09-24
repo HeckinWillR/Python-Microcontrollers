@@ -1,12 +1,20 @@
+#White  (BROADCOMM 5)  = LED0
+#Purple (BROADCOMM 6)  = LED1
+#Blue   (BROADCOMM 13) = LED2
+#Yellow (BROADCOMM 19) = LED3
+#Green  (BROADCOMM 26) = LED4
+#Orange (Ground)
+
 from gpiozero import LED
 from time import sleep
 
-#      BCM Schema   Physcal Pin
-LED0 = LED(17)      # 11
-LED1 = LED(18)      # 12
-LED2 = LED(27)      # 13
-LED3 = LED(22)      # 15
-LED4 = LED(23)      # 16
+#      BROADCOMM   BOARD
+LED0 = LED(5)       # 29
+LED1 = LED(6)       # 31
+LED2 = LED(13)      # 33
+LED3 = LED(19)      # 35
+LED4 = LED(26)      # 37
+#GROUND	  	        # 39	
 LEDArray = [LED0, LED1, LED2, LED3, LED4]
 Decimal = 0
 IntervalSeconds = 1
@@ -24,7 +32,7 @@ def count():
     print("Run")
     global Decimal
     while Decimal < 32:
-                                              # Decrementing loop starts at 4 (first bit in array (least sigfig))
+        # At "range", decrementing loop starts at 4 least sigfig)
         BitArray = [(Decimal >> i) & 1 for i in range(4, -1, -1)]
         for element in BitArray:
             if BitArray[element] == 1 :
@@ -33,6 +41,3 @@ def count():
         Decimal += 1
         sleep(IntervalSeconds) 
 count()
-
-
-
